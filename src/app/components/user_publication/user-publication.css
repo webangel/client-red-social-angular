@@ -1,0 +1,74 @@
+.image-user {
+  width: 55px;
+  height: 55px;
+  border-radius: 100%;
+  overflow: hidden;
+  margin-right: 1em;
+}
+
+.image-user img {
+  width: 100%;
+}
+
+.item-user .card {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2em;
+}
+.item-user .card .user {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 2em;
+}
+.item-user .card:hover {
+  background-color: rgb(244, 244, 244);
+}
+.user_name p {
+  margin-bottom: 0.2rem;
+}
+.user_name p a {
+  text-decoration: none;
+  font-weight: 500;
+  color: rgb(0, 0, 0);
+}
+.user_name p a:hover {
+  text-decoration: none;
+  font-weight: 500;
+  color: rgb(114, 114, 114);
+}
+
+.publication {
+  width: 100%;
+}
+.img-publication {
+  width: 100%;
+  /* height: 550px; */
+  overflow: hidden;
+}
+.img-publication img {
+  width: 100%;
+}
+.text-publication {
+  margin-top: 1em;
+}
+.icon-user-pub{
+  right: 0;
+  position: absolute;
+  font-size: 2em;
+  padding: 0.3em;
+  border: 0;
+  background-color: #ffffff00;
+}
+.text-publication-modal {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;       /* Número de líneas */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.img-publication-modal{
+  width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin: 0.5em;
+}

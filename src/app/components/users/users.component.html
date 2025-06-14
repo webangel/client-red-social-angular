@@ -1,0 +1,50 @@
+<div class="row w-100">
+  <div class="col-lg-8">
+    <div class="container-fluid">
+      <h1>{{title}}</h1>
+      <div class="people">
+        <div *ngFor="let user of users" class="item-user">
+          <div class="card p-3" *ngIf="identity._id!=user._id">
+            <div class="user">
+              <div class="image-user">
+                <img src="{{ url + 'get-image-user/' + user.image}}" *ngIf="user.image" />
+                <img src="../assets/img/not-user-app.png" *ngIf="!user.image" />
+              </div>
+              <div class="user_name">
+                <p>
+                  <a [routerLink]="['/perfil/', user._id]" (click)="enviarDato(user._id) ">
+                    {{user.name + ' ' + user.surname}}
+                  </a>
+                </p>
+                <p class="nickname">{{user.nick}}</p>
+              </div>
+            </div>
+            <div class="p-2">
+              <button class="btn btn-success m-1" *ngIf="follows.indexOf(user._id) < 0" (click)="followUser(user._id)">
+                Seguir
+              </button>
+
+              <button class="btn btn-primary m-1" *ngIf="follows.indexOf(user._id) >= 0"
+                (click)="unFollowUser(user._id)" (mouseenter)="mouseEnter(user._id)" (mouseleave)="mouseLeave()"
+                [class.btn-danger]="user._id == followUserOver">
+                <span *ngIf="user._id == followUserOver; else following">Dejar de seguir</span>
+                <ng-template #following>
+                  <span>Siguiendo</span>
+                </ng-template>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- paginacion -->
+      <ul class="pagination justify-content-end">
+        <li class="page-item" *ngIf="page > 1"><a class="page-link" [routerLink]="['/gente', prev_page]">Anterior</a>
+        </li>
+        <li class="page-item" *ngIf="pages != page"><a class="page-link"
+            [routerLink]="['/gente', next_page]">Siguiente</a></li>
+      </ul>
+    </div>
+  </div>
+  <sidebar class="card col-lg-4"></sidebar>
+</div>

@@ -1,0 +1,75 @@
+<div style="position: sticky">
+  <div id="user-card" class="container-fluid">
+    <div class="header-sidebar">
+      <div class="avatar">
+        <img src="{{ url + 'get-image-user/' + identity.image }}" *ngIf="identity.image" />
+        <img src="../assets/img/not-user-app.png" *ngIf="!identity.image" />
+      </div>
+      <div class="name-surname">
+        <a [routerLink]="['/perfil/', identity._id]" (click)="enviarDato()">
+          {{ identity.name + " " + identity.surname }}
+        </a>
+        <p class="nickname">
+          {{ identity.nick }}
+        </p>
+      </div>
+    </div>
+    <div class="stats" *ngIf="stats">
+      <div class="following-data">
+        <a [routerLink]="['/siguiendo/', identity._id, 1]">
+          <span class="label-stats"> Siguiendo </span>
+          <span class="number-stats">
+            {{ stats.following }}
+          </span>
+        </a>
+      </div>
+      <div class="following-data">
+        <a [routerLink]="['/seguidores/', identity._id, 1]">
+          <span class="label-stats"> Seguidores </span>
+          <span class="number-stats">
+            {{ stats.followed }}
+          </span>
+        </a>
+      </div>
+      <div class="following-data">
+        <a [routerLink]="['/perfil/', identity._id]">
+          <span class="label-stats"> Publicaciones </span>
+          <span class="number-stats">
+            {{ stats.publications }}
+          </span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- formulario de publicaciones -->
+  <div id="new-publication" class="container-fluid">
+    <h3>Crear publicación</h3>
+    <div *ngIf="status == 'warning'" class="alert alert-warning alert-dismissible fade show" role="alert">
+      {{ message }}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <div *ngIf="status == 'success'" class="alert alert-success alert-dismissible fade show" role="alert">
+      {{ message }}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <div *ngIf="status == 'danger'" class="alert alert-danger alert-dismissible fade show" role="alert">
+      {{ message }}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <form #newPubForm="ngForm" (ngSubmit)="onSubmit(newPubForm, $event)" class="">
+      <div class="mb-3">
+        <label class="form-label">¿Que estas pensando hoy?</label>
+        <textarea name="text" #texto="ngModel" [(ngModel)]="publication.text" class="form-control" required></textarea>
+        <span *ngIf="!texto.valid && texto.touched" class="">
+          El texto de publicación es obligatoria
+        </span>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Sube tu foto</label>
+        <input type="file" placeholder="Subir Imagen" class="form-control" (change)="fileChangeEvent($event)" />
+      </div>
+      <input type="submit" value="Enviar" class="btn btn-success" [disabled]="!newPubForm.form.valid" />
+    </form>
+  </div>
+</div>

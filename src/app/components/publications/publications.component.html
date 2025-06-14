@@ -1,0 +1,77 @@
+<div class="container-fluid" #content>
+
+  <div *ngIf="this.status=='error'">
+    <h4 class="text-center">No hay publicaciones</h4>
+  </div>
+  <p class="d-flex pt-2 justify-content-end" *ngIf="this.status=='success'">
+    <button class="btn btn-success" (click)="getPublications(this.page)">refrescar</button>
+  </p>
+  <div *ngIf="this.status=='success'" style="height: 95vh; overflow-y: scroll">
+
+    <div class="publicaiones">
+      <div *ngFor="let publication of publications" class="item-user">
+        <div class="card p-3">
+          <div *ngIf="publication.user._id == identity._id">
+            <button type="button" class="icon-user-pub" data-bs-toggle="modal"
+              [attr.data-bs-target]="'#staticBackdrop' + publication._id">
+              <i class="bi bi-trash "></i>
+            </button>
+            <div class="modal fade" [attr.id]="'staticBackdrop' + publication._id" tabindex="-1"
+              aria-labelledby="staticBackdropLabel">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">¿Seguro que quieres eliminar la publicación?</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body d-flex flex-column align-items-center">
+                    <img class="img-publication-modal" src="{{ url + 'get-image-pub/' + publication.file }}"
+                      alt="img-pub" />
+                    <p class="text-publication-modal">
+                      {{publication.text}}
+                    </p>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-success" data-bs-dismiss="modal"
+                      (click)="deletePublication(publication._id); getPublications(this.page)">Borrar</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="user">
+            <div class="image-user">
+              <img src="{{ url + 'get-image-user/' + publication.user.image }}" *ngIf="publication.user" />
+              <img src="../assets/img/not-user-app.png" *ngIf="!publication.user.image" />
+            </div>
+            <div class="user_name">
+              <p>Publicado {{ publication.created_at | fromUnix }}</p>
+              <p>
+                <a [routerLink]="['/perfil/', publication.user._id]" (click)="enviarDato(publication.user._id)">
+                  {{ publication.user.name + " " + publication.user.surname }}
+                </a>
+              </p>
+              <p class="nickname">{{ publication.user.nick }}</p>
+            </div>
+          </div>
+          <div class="publication">
+            <div class="img-publication">
+              <img src="{{ url + 'get-image-pub/' + publication.file }}" *ngIf="publication.file" />
+              <!-- <img src="../assets/img/no_img_product.jpg" *ngIf="!publication.file" /> -->
+            </div>
+            <div class="text-publication">
+              {{ publication.text }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="text-center pb-2" *ngIf="publications && publications.length && page!=pages">
+      <button class="btn btn-primary" (click)="viewMore()" *ngIf="!noMore">
+        Ver más Publicaciones
+      </button>
+    </div>
+  </div>
+</div>

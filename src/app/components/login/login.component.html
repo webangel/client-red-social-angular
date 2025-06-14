@@ -1,0 +1,49 @@
+<div class="content">
+  <div class="contentForm">
+    <div class="content-user-total">
+		  <div class="content-user-login">
+		    <i class="icon-user-login">
+          <img src="../../../assets/img/logo_scalar.png"  alt="logo">
+        </i>
+		  </div>
+		</div>
+      <h1>{{title}}</h1>
+      <div *ngIf="status == 'warning' " class="alert alert-warning alert-dismissible fade show" role="alert">
+        {{message}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      <div *ngIf="status == 'success' " class="alert alert-success alert-dismissible fade show" role="alert">
+        Bienvenido {{message}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      <div *ngIf="status == 'danger' " class="alert alert-danger alert-dismissible fade show" role="alert">
+        {{message}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)" class="col-lg-10">
+
+        <div class="mb-3">
+          <label class="form-label">Correo</label>
+          <input type="email" class="form-control" name="email" #email="ngModel" [(ngModel)]="user.email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+          <span *ngIf="!email.valid && email.touched" class="">
+            El correo no es valido
+          </span>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Contraseña</label>
+          <input type="password" class="form-control"  name="password" #password="ngModel" [(ngModel)]="user.password" required>
+          <span *ngIf="!password.valid && password.touched" class="">
+            La contraseña el obligatorio
+          </span>
+        </div>
+        <input type="submit" value={{title}} class="btn btn-primary btn-submit" >
+        <!-- [disabled]="!loginForm.form.valid" -->
+      </form>
+      <div class="passContent">
+          <a href="">¿Olvidaste tu contraseña?</a>
+      </div>
+  </div>
+</div>
+
+
+
