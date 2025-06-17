@@ -16,16 +16,31 @@
               </a>
             </p>
             <p class="nickname">{{message.emitter.nick}}</p>
+            <p>
+              <strong>Para:</strong>:
+              <a [routerLink]="['/perfil/', message.receiver._id]">
+                {{message.receiver.name + ' ' + message.receiver.surname}}
+              </a>
+            </p>
             <p><strong>Mensaje</strong>:</p>
             <div class="col-lg-12">
               {{message.text}}
             </div>
-            <p class="pt-3 created_at">Recivido {{ message.created_at | fromUnix }}</p>
+            <p class="pt-3 created_at">Enviado {{ message.created_at | fromUnix }}</p>
           </div>
         </div>
       </div>
     </div>
+      <!-- paginacion -->
+    <ul class="pagination justify-content-end" *ngIf="pages>1">
+          <li class="page-item" *ngIf="page > 1"><a class="page-link"
+              [routerLink]="['/mensajes/enviados', prev_page]">Anterior</a>
+          </li>
+          <li class="page-item" *ngIf="pages != page"><a class="page-link"
+              [routerLink]="['/mensajes/enviados', next_page]">Siguiente</a></li>
+    </ul>
   </div>
+
   <div class="text-center p-5" *ngIf="messages.length==0">
     <h5 class="no-messages">No hay mensajes enviados</h5>
   </div>
