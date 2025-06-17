@@ -38,7 +38,7 @@
       </div>
 
       <!-- paginacion -->
-      <ul class="pagination justify-content-end">
+      <ul class="pagination justify-content-end" *ngIf="pages>1">
         <li class="page-item" *ngIf="page > 1"><a class="page-link" [routerLink]="['/gente', prev_page]">Anterior</a>
         </li>
         <li class="page-item" *ngIf="pages != page"><a class="page-link"

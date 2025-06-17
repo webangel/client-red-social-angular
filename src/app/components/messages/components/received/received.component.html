@@ -26,16 +26,16 @@
 
       </div>
     </div>
+    <!-- paginacion -->
+    <ul class="pagination justify-content-end" *ngIf="pages>1">
+      <li class="page-item" *ngIf="page > 1"><a class="page-link"
+          [routerLink]="['/mensajes/recibidos', prev_page]">Anterior</a>
+      </li>
+      <li class="page-item" *ngIf="pages != page"><a class="page-link"
+          [routerLink]="['/mensajes/recibidos', next_page]">Siguiente</a></li>
+    </ul>
   </div>
 
-  <!-- paginacion -->
-  <!-- <ul class="pagination justify-content-end">
-        <li class="page-item" *ngIf="page > 1"><a class="page-link"
-            [routerLink]="['/siguiendo', userPageId, prev_page]">Anterior</a>
-        </li>
-        <li class="page-item" *ngIf="pages != page"><a class="page-link"
-            [routerLink]="['/siguiendo', userPageId, next_page]">Siguiente</a></li>
-      </ul> -->
   <div class="text-center p-5" *ngIf="messages.length==0">
     <h5 class="no-messages">No hay mensajes recividos</h5>
   </div>

@@ -59,7 +59,7 @@ export class FollowingComponent implements OnInit{
   actualPage(){
     this._route.params.subscribe(params =>{
 
-      let user_id = params['id'];
+      let user_id = +params['id'];
       this.userPageId = user_id;
 
       let page = params['page'];

@@ -54,7 +54,7 @@ export class UsersComponent implements OnInit{
 
   actualPage(){
     this._route.params.subscribe(params =>{
-      let page = params['page'];
+      let page = +params['page'];
       this.page = page;
 
       if(!params['page']){

@@ -1,19 +1,16 @@
 <div class="row w-100 messages">
   <div class="col-lg-3 aside-message p-3">
-    <h3>{{title}}</h3>
+    <h3><i class="bi bi-envelope-fill"></i> {{title}}</h3>
     <div class="sidebar-admin">
       <ul>
         <li role="presentation" [routerLinkActive]="['active']">
-          <a [routerLink]="['/mensajes/enviar']">Enviar Mensajes</a>
+          <a [routerLink]="['/mensajes/enviar']"><i class="bi bi-send pe-2"></i> Enviar Mensajes</a>
         </li>
         <li role="presentation" [routerLinkActive]="['active']">
-          <a [routerLink]="['/mensajes/recibidos']">Mensajes recibidos</a>
+          <a [routerLink]="['/mensajes/recibidos']"><i class="bi bi-envelope-arrow-down pe-2"></i>Mensajes recibidos</a>
         </li>
         <li role="presentation" [routerLinkActive]="['active']">
-          <a [routerLink]="['/mensajes/enviados']">Mensajes enviados</a>
-        </li>
-        <li role="presentation" [routerLinkActive]="['active']">
-          <a [routerLink]="['/home']">Informcaión</a>
+          <a [routerLink]="['/mensajes/enviados']"><i class="bi bi-envelope-arrow-up pe-2"></i>Mensajes enviados</a>
         </li>
       </ul>
     </div>

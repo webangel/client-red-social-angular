@@ -6,6 +6,7 @@ import { User } from '../../models/user';
 import { FollowService } from '../../services/follow.service';
 import { GLOBAL } from '../../services/global';
 import { UserService } from '../../services/user.service';
+import { SharedService } from 'src/app/services/shared.service';
 
 @Component({
   selector: 'profile',
@@ -30,7 +31,8 @@ export class ProfileComponent implements OnInit{
     private _route: ActivatedRoute,
     private _router: Router,
     private _userService: UserService,
-    private _followService: FollowService
+    private _followService: FollowService,
+    private _sharedService: SharedService
   ){
     this.title = 'Perfil';
     this.user = this._userService.getIdentity();
@@ -56,10 +58,15 @@ export class ProfileComponent implements OnInit{
     this.loadPage();
   }
 
+  enviarDato(id: any) {
+    this._sharedService.sendMessage({ id: id });
+  }
+
 
   loadPage(){
     this._route.params.subscribe(params => {
       let id = params['id'];
+      this.enviarDato(id);
       this.getUser(id);
       this.getCounters(id);
     });
