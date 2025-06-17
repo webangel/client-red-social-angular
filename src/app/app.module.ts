@@ -31,7 +31,6 @@ import { FromUnixPipe } from './shared/from-unix.pipe';
     UsersComponent,
     UserPublicationComponent,
     SidebarComponent,
-    FromUnixPipe,
     PublicationsComponent,
     ProfileComponent,
     MenuComponent,
@@ -42,7 +41,8 @@ import { FromUnixPipe } from './shared/from-unix.pipe';
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FromUnixPipe
   ],
   providers: [
     UserService

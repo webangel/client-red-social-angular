@@ -1,4 +1,42 @@
 <div class="col-lg-10">
   <h3>{{title}}</h3>
   <!-- listado de mansajes recividos -->
+  <div class="people" *ngIf="messages">
+    <div *ngFor="let message of messages" class="item-user">
+      <div class="card p-3" *ngIf="identity._id!=message.emitter._id">
+        <div class="user">
+          <div class="image-user">
+            <img src="{{ url + 'get-image-user/' + message.emitter.image}}" *ngIf="message.emitter.image" />
+            <img src="../assets/img/not-user-app.png" *ngIf="!message.emitter.image" />
+          </div>
+          <div class="user_name">
+            <p>
+              <a [routerLink]="['/perfil/', message.emitter._id]">
+                {{message.emitter.name + ' ' + message.emitter.surname}}
+              </a>
+            </p>
+            <p class="nickname">{{message.emitter.nick}}</p>
+            <p><strong>Mensaje</strong>:</p>
+            <div class="col-lg-12">
+              {{message.text}}
+            </div>
+            <p class="pt-3 created_at">Recivido {{ message.created_at | fromUnix }}</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- paginacion -->
+  <!-- <ul class="pagination justify-content-end">
+        <li class="page-item" *ngIf="page > 1"><a class="page-link"
+            [routerLink]="['/siguiendo', userPageId, prev_page]">Anterior</a>
+        </li>
+        <li class="page-item" *ngIf="pages != page"><a class="page-link"
+            [routerLink]="['/siguiendo', userPageId, next_page]">Siguiente</a></li>
+      </ul> -->
+  <div class="text-center p-5" *ngIf="messages.length==0">
+    <h5 class="no-messages">No hay mensajes recividos</h5>
+  </div>
 </div>

@@ -1,3 +1,9 @@
+.messages{
+  height: 90vh;
+}
+.aside-message{
+  background-color: #f4f4f4;
+}
 .sidebar-admin{
   padding: 1.2em;
 }
@@ -6,7 +12,7 @@
   padding: 0.5em;
 }
 .sidebar-admin ul li:hover {
-  background-color: rgb(100, 100, 100);
+  background-color: rgb(235 235 235);
   cursor: pointer;
 }
 .sidebar-admin ul li a{
@@ -15,12 +21,9 @@
   width: 100%;
   display: flex;
 }
-.sidebar-admin ul li:hover a{
-  color: #efefef;
-}
-.sidebar-admin ul .active{
-   background-color: rgb(100, 100, 100);
+.sidebar-admin ul li.active{
+   background-color: rgb(100, 100, 100)!important;
 }
 .sidebar-admin ul .active a{
-   color: #efefef;
+   color: #efefef!important;
 }

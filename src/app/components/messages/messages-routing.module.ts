@@ -16,7 +16,9 @@ const messagesRoutes: Routes =[
       {path: '', redirectTo: 'recibidos', pathMatch: 'full'},
       {path: 'enviar', component: AddComponent, canActivate: [authGuard] },
       {path: 'recibidos', component: ReceivedComponent, canActivate: [authGuard] },
+      {path: 'recibidos/page', component: ReceivedComponent, canActivate: [authGuard] },
       {path: 'enviados', component: SendedComponent, canActivate: [authGuard] },
+      {path: 'enviados/:page', component: SendedComponent, canActivate: [authGuard] },
     ]
   }
 ];

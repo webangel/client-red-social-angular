@@ -3,11 +3,13 @@
   <div class="col-lg-8">
     <div class="header-sidebar" id="data-profile" *ngIf="user">
       <div class="avatar">
-        <div class="label label-followed" *ngIf="followed">
-          Te sigue
-        </div>
-        <div class="label label-no-followed" *ngIf="!followed">
-          No te sigue
+        <div *ngIf="user._id != identity._id">
+          <div class="label label-followed" *ngIf="followed">
+            Te sigue
+          </div>
+          <div class="label label-no-followed" *ngIf="!followed">
+            No te sigue
+          </div>
         </div>
         <img src="{{ url + 'get-image-user/' + user.image}}" alt="foto de perfil" *ngIf="user.image" />
         <img src="../assets/img/not-user-app.png" alt="foto por defecto" *ngIf="!user.image" />

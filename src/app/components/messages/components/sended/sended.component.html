@@ -1,4 +1,32 @@
 <div class="col-lg-10">
   <h3>{{title}}</h3>
   <!-- listado de mansajes enviados -->
+  <div class="people" *ngIf="messages.length>0">
+    <div *ngFor="let message of messages" class="item-user">
+      <div class="card p-3">
+        <div class="user">
+          <div class="image-user">
+            <img src="{{ url + 'get-image-user/' + message.emitter.image}}" *ngIf="message.emitter.image" />
+            <img src="../assets/img/not-user-app.png" *ngIf="!message.emitter.image" />
+          </div>
+          <div class="user_name">
+            <p>
+              <a [routerLink]="['/perfil/', message.emitter._id]">
+                {{message.emitter.name + ' ' + message.emitter.surname}}
+              </a>
+            </p>
+            <p class="nickname">{{message.emitter.nick}}</p>
+            <p><strong>Mensaje</strong>:</p>
+            <div class="col-lg-12">
+              {{message.text}}
+            </div>
+            <p class="pt-3 created_at">Recivido {{ message.created_at | fromUnix }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="text-center p-5" *ngIf="messages.length==0">
+    <h5 class="no-messages">No hay mensajes enviados</h5>
+  </div>
 </div>

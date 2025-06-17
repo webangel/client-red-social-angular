@@ -119,20 +119,18 @@ export class PublicationsComponent implements OnInit, AfterViewInit, DoCheck  {
 
   }
   deletePublication(id: any){
-    this._publicationService.deletePublication(this.token, id).subscribe(
-      data =>{
-
+    this._publicationService.deletePublication(this.token, id).subscribe({
+      next: () =>{
           this.refresh();
-
       },
-      error =>{
-         var errorMessage = <any>error;
+      error: err =>{
+         var errorMessage = <any>err;
             console.log(errorMessage);
             if (errorMessage != null) {
               this.status = 'error';
             }
           }
-    );
+    });
   }
 
   public noMore = false;
