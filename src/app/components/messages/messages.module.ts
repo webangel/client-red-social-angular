@@ -8,23 +8,23 @@ import { MessagesRoutingModule } from './messages-routing.module';
 
 //componentes
 import { UserService } from 'src/app/services/user.service';
+import { FromUnixPipe } from 'src/app/shared/from-unix.pipe';
 import { AddComponent } from './components/add/add.component';
 import { MainComponent } from './components/main/main.component';
 import { ReceivedComponent } from './components/received/received.component';
 import { SendedComponent } from './components/sended/sended.component';
-
-
 @NgModule({
   declarations: [
     MainComponent,
     AddComponent,
     ReceivedComponent,
-    SendedComponent
+    SendedComponent,
   ],
   imports: [
     CommonModule,
     FormsModule,
-    MessagesRoutingModule
+    MessagesRoutingModule,
+    FromUnixPipe
   ],
   exports: [
     MainComponent,

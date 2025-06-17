@@ -13,11 +13,11 @@ export class MessageService{
     this.url = GLOBAL.url;
   }
 
-  addMessage(token:any, message:string):Observable<any>{
+  addMessage(token:any, message:Message):Observable<any>{
     let params = JSON.stringify(message);
     let headers = new HttpHeaders().set('Content-Type', 'application/json')
                                     .set('Authorization', token);
-    return this._http.post(this.url+'messages/'+params, {headers});
+    return this._http.post(this.url+'message', params, {headers});
   }
 
   getMyMessages(token: any, page=1):Observable<any>{

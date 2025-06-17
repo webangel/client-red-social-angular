@@ -7,7 +7,8 @@ dayjs.extend(relativeTime);
 dayjs.locale('es');
 
 @Pipe({
-  name: 'fromUnix'
+  name: 'fromUnix',
+  standalone: true
 })
 export class FromUnixPipe implements PipeTransform {
   transform(value: string): string {

@@ -1,4 +1,33 @@
 <div class="col-lg-10">
   <h3>{{title}}</h3>
+  <div *ngIf="status == 'success' " class="alert alert-success alert-dismissible fade show" role="alert">
+    {{messageAlert}} <a [routerLink]="['/mensajes/enviados']">tus mensajes enviados</a>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  <div *ngIf="status == 'danger' " class="alert alert-danger alert-dismissible fade show" role="alert">
+    {{messageAlert}}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
   <!-- formulario de Mensajes -->
+  <form #formAdd="ngForm" (ngSubmit)="onSubmit(formAdd)">
+    <div class="pb-2">
+      <label role="receiver" class="pb-2">Para:</label>
+      <select *ngIf="follows" name="receiver" #receiver="ngModel" [(ngModel)]="message.receiver" class="form-control"
+        required>
+        <option *ngFor="let follow of follows" value="{{follow.user._id}}">
+          {{follow.user.name + ' ' + follow.user.surname + ' ' + '(' + follow.user.nick + ')'}}
+        </option>
+      </select>
+    </div>
+    <div class="pb-2">
+      <label role="text" class="pb-2">Escribe un mensaje:</label>
+      <textarea class="form-control" rows="5" name="text" #text="ngModel" [(ngModel)]="message.text"></textarea>
+      <span *ngIf="!text.valid && text.touched">
+        El mensaje es obligatorio
+      </span>
+    </div>
+    <div>
+      <input type="submit" value="{{title}}" class="btn btn-success" />
+    </div>
+  </form>
 </div>

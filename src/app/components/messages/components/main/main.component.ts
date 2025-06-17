@@ -10,7 +10,7 @@ import { Component, OnInit } from '@angular/core';
 export class MainComponent implements OnInit{
   public title:string;
   constructor(){
-    this.title = 'Menu';
+    this.title = 'Mensajería';
   }
   ngOnInit(): void {
      console.log('main.component cargado!');

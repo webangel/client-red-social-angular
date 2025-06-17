@@ -5,8 +5,8 @@ export class Message{
     public _id: string,
     public text: string,
     public viewed: string,
-    public create_at: string,
-    public emiter: string,
-    public receiver: string
+    public created_at: string,
+    public emitter: any,
+    public receiver: any
   ){}
 }
